@@ -359,9 +359,8 @@ class ConfigurationTestCase(BaseTestCase):
 
     def test_read_and_getlist_false_values(self):
         config = self._read()
-        values = [None, False, '', 'foo', u'', u'bar',
-                  0, 0L, 0.0, 0j, 42, 43.0]
-        self.assertEqual([False, 'foo', u'bar', 0, 0L, 0.0, 0j, 42, 43.0],
+        values = [None, False, '', 'foo', u'', u'bar', 0, 0.0, 0j, 42, 43.0]
+        self.assertEqual([False, 'foo', u'bar', 0, 0.0, 0j, 42, 43.0],
                          config.getlist('a', 'false', values))
         self.assertEqual(values, config.getlist('a', 'false', values,
                                                 keep_empty=True))
@@ -794,11 +793,11 @@ class ConfigurationTestCase(BaseTestCase):
             option_blah = (Option)('a', 'blah', u'Blàh!')
             option_true = (BoolOption)('a', 'true', True)
             option_false = (BoolOption)('a', 'false', False)
-            option_list = (ListOption)('a', 'list', ['#cc0', 4.2, 42L, 0, None,
+            option_list = (ListOption)('a', 'list', ['#cc0', 4.2, 42, None,
                                                      True, False, None],
                                        sep='|', keep_empty=True)
             option_list = (ListOption)('a', 'list-seps',
-                                       ['#cc0', 4.2, 42L, 0, None, True, False,
+                                       ['#cc0', 4.2, 42, 0, None, True, False,
                                         None],
                                        sep=(',', '|'), keep_empty=True)
             option_choice = (ChoiceOption)('a', 'choice', [-42, 42])
@@ -813,7 +812,7 @@ class ConfigurationTestCase(BaseTestCase):
             self.assertEqual('blah = Blàh!\n',                       f.next())
             self.assertEqual('choice = -42\n',                       f.next())
             self.assertEqual('false = disabled\n',                   f.next())
-            self.assertEqual('list = #cc0|4.2|42|0||enabled|disabled|\n',
+            self.assertEqual('list = #cc0|4.2|42||enabled|disabled|\n',
                              f.next())
             self.assertEqual('list-seps = #cc0,4.2,42,0,,enabled,disabled,\n',
                              f.next())
@@ -830,7 +829,7 @@ class ConfigurationTestCase(BaseTestCase):
             option_true = (BoolOption)(u'résumé', u'trüé', True)
             option_false = (BoolOption)(u'résumé', u'fálsé', False)
             option_list = (ListOption)(u'résumé', u'liśt',
-                                       [u'#ccö', 4.2, 42L, 0, None, True,
+                                       [u'#ccö', 4.2, 42, None, True,
                                         False, None],
                                        sep='|', keep_empty=True)
             option_choice = (ChoiceOption)(u'résumé', u'chöicé', [-42, 42])
@@ -845,7 +844,7 @@ class ConfigurationTestCase(BaseTestCase):
             self.assertEqual('bláh = Blàh!\n',                       f.next())
             self.assertEqual('chöicé = -42\n',                       f.next())
             self.assertEqual('fálsé = disabled\n',                   f.next())
-            self.assertEqual('liśt = #ccö|4.2|42|0||enabled|disabled|\n',
+            self.assertEqual('liśt = #ccö|4.2|42||enabled|disabled|\n',
                              f.next())
             self.assertEqual('nöné = \n',                            f.next())
             self.assertEqual('trüé = enabled\n',                     f.next())

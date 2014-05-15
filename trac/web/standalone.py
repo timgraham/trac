@@ -231,7 +231,7 @@ def main():
             pass
 
     parser.set_defaults(port=None, hostname='', base_path='', daemonize=False,
-                        protocol='http', http11=True, umask=022, user=None,
+                        protocol='http', http11=True, umask=0o22, user=None,
                         group=None)
     options, args = parser.parse_args()
 

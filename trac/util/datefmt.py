@@ -110,7 +110,7 @@ def to_utimestamp(dt):
     if not dt:
         return 0
     diff = dt - _epoc
-    return (diff.days * 86400000000L + diff.seconds * 1000000
+    return (diff.days * 86400000000 + diff.seconds * 1000000
             + diff.microseconds)
 
 def from_utimestamp(ts):

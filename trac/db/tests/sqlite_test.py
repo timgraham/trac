@@ -70,7 +70,7 @@ class DatabaseFileTestCase(unittest.TestCase):
 
     def test_no_permissions(self):
         self._create_env()
-        os.chmod(self.db_path, 0444)
+        os.chmod(self.db_path, 0o444)
         env = Environment(self.env_path)
         try:
             self._db_query(env)

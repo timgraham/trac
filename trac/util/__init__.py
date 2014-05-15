@@ -255,7 +255,7 @@ def create_unique_file(path):
             flags = os.O_CREAT + os.O_WRONLY + os.O_EXCL
             if hasattr(os, 'O_BINARY'):
                 flags += os.O_BINARY
-            return path, os.fdopen(os.open(path, flags, 0666), 'w')
+            return path, os.fdopen(os.open(path, flags, 0o666), 'w')
         except OSError as e:
             if e.errno != errno.EEXIST:
                 raise
@@ -332,16 +332,16 @@ def create_zipinfo(filename, mtime=None, dir=False, executable=False, symlink=Fa
         if not zipinfo.filename.endswith('/'):
             zipinfo.filename += '/'
         zipinfo.compress_type = ZIP_STORED
-        zipinfo.external_attr = 040755 << 16L        # permissions drwxr-xr-x
+        zipinfo.external_attr = 0o40755 << 16        # permissions drwxr-xr-x
         zipinfo.external_attr |= 0x10                # MS-DOS directory flag
     else:
         zipinfo.compress_type = ZIP_DEFLATED
-        zipinfo.external_attr = 0644 << 16L          # permissions -r-wr--r--
+        zipinfo.external_attr = 0o644 << 16          # permissions -r-wr--r--
         if executable:
-            zipinfo.external_attr |= 0755 << 16L     # -rwxr-xr-x
+            zipinfo.external_attr |= 0o755 << 16     # -rwxr-xr-x
         if symlink:
             zipinfo.compress_type = ZIP_STORED
-            zipinfo.external_attr |= 0120000 << 16L  # symlink file type
+            zipinfo.external_attr |= 0o120000 << 16  # symlink file type
 
     if comment:
         zipinfo.comment = comment.encode('utf-8')

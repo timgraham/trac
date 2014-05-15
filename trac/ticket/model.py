@@ -80,7 +80,7 @@ class Ticket(object):
 
     @staticmethod
     def id_is_valid(num):
-        return 0 < int(num) <= 1L << 31
+        return 0 < int(num) <= 1 << 31
 
     @property
     def resource(self):
