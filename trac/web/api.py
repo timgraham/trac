@@ -21,7 +21,6 @@ import cgi
 from datetime import datetime
 import errno
 from hashlib import md5
-import new
 import mimetypes
 import os
 import re
@@ -209,12 +208,11 @@ class HTTPException(TracBaseError):
     def subclass(cls, name, code):
         """Create a new Exception class representing a HTTP status code."""
         reason = HTTP_STATUS.get(code, 'Unknown')
-        new_class = new.classobj(name, (HTTPException,), {
-            '__doc__': 'Exception for HTTP %d %s' % (code, reason)
+        return type(name, (cls,), {
+            '__doc__': 'Exception for HTTP %d %s' % (code, reason),
+            'code': code,
+            'reason': reason,
         })
-        new_class.code = code
-        new_class.reason = reason
-        return new_class
 
 _HTTPException_subclass_names = []
 for code in [code for code in HTTP_STATUS if code >= 400]:
