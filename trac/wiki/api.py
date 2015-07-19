@@ -19,6 +19,7 @@
 import re
 
 from genshi.builder import tag
+from six import unichr
 
 from trac.cache import cached
 from trac.config import BoolOption, ListOption

@@ -27,6 +27,8 @@ import textwrap
 from urllib import quote, quote_plus, unquote
 from unicodedata import east_asian_width
 
+from six import unichr
+
 CRLF = '\r\n'
 
 class Empty(unicode):

@@ -27,6 +27,7 @@ import sys
 import unicodedata
 
 from genshi.builder import tag
+from six import unichr
 
 from trac.admin import AdminCommandError, IAdminCommandProvider, PrefixList, \
                        console_datetime_format, get_dir_list
