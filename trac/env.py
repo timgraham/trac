@@ -21,6 +21,8 @@ import setuptools
 import sys
 from urlparse import urlsplit
 
+import six
+
 from trac import db_default, log
 from trac.admin import AdminCommandError, IAdminCommandProvider
 from trac.cache import CacheManager, cached
@@ -348,7 +350,7 @@ class Environment(Component, ComponentManager):
 
     def _component_name(self, name_or_class):
         name = name_or_class
-        if not isinstance(name_or_class, basestring):
+        if not isinstance(name_or_class, six.string_types):
             name = name_or_class.__module__ + '.' + name_or_class.__name__
         return name.lower()
 

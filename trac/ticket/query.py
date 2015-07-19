@@ -22,6 +22,7 @@ from math import ceil
 import csv
 import re
 
+import six
 from genshi.builder import tag
 
 from trac.config import Option, IntOption
@@ -939,14 +940,14 @@ class QueryModule(Component):
                             break
 
         cols = args.get('col')
-        if isinstance(cols, basestring):
+        if isinstance(cols, six.string_types):
             cols = [cols]
         # Since we don't show 'id' as an option to the user,
         # we need to re-insert it here.
         if cols and 'id' not in cols:
             cols.insert(0, 'id')
         rows = args.get('row', [])
-        if isinstance(rows, basestring):
+        if isinstance(rows, six.string_types):
             rows = [rows]
         format = req.args.get('format')
         max = args.get('max')

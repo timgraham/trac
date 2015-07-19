@@ -20,6 +20,8 @@ from json import dumps
 from math import ceil
 import re
 
+import six
+
 __all__ = ['captioned_button', 'classes', 'first_last', 'group', 'istext',
            'prepared_paginate', 'paginate', 'Paginator']
 __no_apidoc__ = 'prepared_paginate'
@@ -115,7 +117,7 @@ def group(iterable, num, predicate=None):
 def istext(text):
     """`True` for text (`unicode` and `str`), but `False` for `Markup`."""
     from genshi.core import Markup
-    return isinstance(text, basestring) and not isinstance(text, Markup)
+    return isinstance(text, six.string_types) and not isinstance(text, Markup)
 
 def prepared_paginate(items, num_items, max_per_page):
     if max_per_page == 0:

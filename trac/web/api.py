@@ -29,7 +29,9 @@ from StringIO import StringIO
 import sys
 import urlparse
 
+import six
 from genshi.builder import Fragment
+
 from trac.core import Interface, TracBaseError
 from trac.util import get_last_traceback, lazy, unquote
 from trac.util.datefmt import http_date, localtz
@@ -575,7 +577,7 @@ class Request(object):
         self.send_header('Cache-Control', 'must-revalidate')
         self.send_header('Expires', 'Fri, 01 Jan 1999 00:00:00 GMT')
         self.send_header('Content-Type', content_type + ';charset=utf-8')
-        if isinstance(content, basestring):
+        if isinstance(content, six.string_types):
             self.send_header('Content-Length', len(content))
         self.end_headers()
 
@@ -710,7 +712,7 @@ class Request(object):
             bufsize = 0
             buf = []
             buf_append = buf.append
-            if isinstance(data, basestring):
+            if isinstance(data, six.string_types):
                 data = [data]
             for chunk in data:
                 if isinstance(chunk, unicode):

@@ -20,6 +20,7 @@ import csv
 import re
 from StringIO import StringIO
 
+import six
 from genshi.builder import tag
 
 from trac.config import IntOption
@@ -503,7 +504,7 @@ class ReportModule(Component):
                         if sort_values:
                             return sort_values.get(val)
                         # otherwise, continue with string comparison:
-                        if isinstance(val, basestring):
+                        if isinstance(val, six.string_types):
                             val = val.lower()
                         return val
                     results = sorted(results, key=sortkey, reverse=(not asc))

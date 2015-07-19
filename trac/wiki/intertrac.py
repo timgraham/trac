@@ -16,6 +16,7 @@
 
 import re
 
+import six
 from genshi.builder import Element, Fragment, tag
 
 from trac.config import ConfigSection
@@ -112,7 +113,7 @@ class InterTracDispatcher(Component):
 
         def generate_prefix(prefix):
             intertrac = intertracs[prefix]
-            if isinstance(intertrac, basestring):
+            if isinstance(intertrac, six.string_types):
                 yield tag.tr(tag.td(tag.strong(prefix)),
                              tag.td(tag_("Alias for %(name)s",
                                          name=tag.strong(intertrac))))

@@ -20,6 +20,8 @@ import os
 import time
 import unittest
 
+import six
+
 import trac.tests.compat
 from trac.core import TracError
 from trac.util import datefmt
@@ -1696,7 +1698,7 @@ class LocalTimezoneTestCase(unittest.TestCase):
             dt_naive += delta
 
     def _compare_pytz(self, tz, value, localize=True):
-        if isinstance(value, basestring):
+        if isinstance(value, six.string_types):
             value = datefmt.parse_date(value + 'Z', datefmt.utc)
         dt_naive = value.replace(tzinfo=None)
         self._compare_pytz_arithmetic(tz, dt_naive)

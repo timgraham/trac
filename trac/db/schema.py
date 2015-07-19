@@ -14,6 +14,8 @@
 #
 # Author: Christopher Lenz <cmlenz@gmx.de>
 
+import six
+
 
 class Table(object):
     """Declare a table in a database schema."""
@@ -23,7 +25,7 @@ class Table(object):
         self.columns = []
         self.indices = []
         self.key = key
-        if isinstance(key, basestring):
+        if isinstance(key, six.string_types):
             self.key = [key]
 
     def __getitem__(self, objs):

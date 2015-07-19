@@ -22,6 +22,8 @@ import sys
 import unittest
 from StringIO import StringIO
 
+import six
+
 # IAdminCommandProvider implementations
 import trac.admin.api
 import trac.attachment
@@ -157,8 +159,8 @@ class TracadminTestCase(unittest.TestCase):
 
     def assertEqual(self, expected_results, output, msg=None):
         """:deprecated: since 1.0.2, use `assertExpectedResult` instead."""
-        if not (isinstance(expected_results, basestring) and
-                isinstance(output, basestring)):
+        if not (isinstance(expected_results, six.string_types) and
+                isinstance(output, six.string_types)):
             return unittest.TestCase.assertEqual(self, expected_results,
                                                  output, msg)
         def diff():

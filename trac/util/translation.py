@@ -16,6 +16,7 @@
 import pkg_resources
 import re
 
+import six
 from genshi.builder import tag
 
 from trac.util.concurrency import ThreadLocal, threading
@@ -77,7 +78,7 @@ def add_domain(domain, env_path, locale_dir):
     pass
 
 def domain_functions(domain, *symbols):
-    if symbols and not isinstance(symbols[0], basestring):
+    if symbols and not isinstance(symbols[0], six.string_types):
         symbols = symbols[0]
     _functions = {
       'gettext': gettext_noop,
@@ -278,7 +279,7 @@ try:
 
         Note: the symbols can also be given as an iterable in the 2nd argument.
         """
-        if symbols and not isinstance(symbols[0], basestring):
+        if symbols and not isinstance(symbols[0], six.string_types):
             symbols = symbols[0]
         _functions = {
           'gettext': translations.dgettext,

@@ -36,6 +36,8 @@ import tempfile
 import time
 from urllib import quote, unquote, urlencode
 
+import six
+
 from trac.util.compat import any, md5, sha1, sorted
 from trac.util.datefmt import to_datetime, to_timestamp, utc
 from trac.util.text import exception_to_unicode, to_unicode, \
@@ -240,7 +242,7 @@ def create_file(path, data='', mode='w'):
     """
     with open(path, mode) as f:
         if data:
-            if isinstance(data, basestring):
+            if isinstance(data, six.string_types):
                 f.write(data)
             else:  # Assume iterable
                 f.writelines(data)
@@ -1007,7 +1009,7 @@ class Ranges(object):
         if not r:
             return
         p = self.pairs
-        if isinstance(r, basestring):
+        if isinstance(r, six.string_types):
             r = re.split(u',\u200b?', r)
         for x in r:
             try:
@@ -1234,7 +1236,7 @@ def as_bool(value):
     "on" or non-zero numbers, ignoring case. For non-string arguments, return
     the argument converted to a `bool`, or `False` if the conversion fails.
     """
-    if isinstance(value, basestring):
+    if isinstance(value, six.string_types):
         try:
             return bool(float(value))
         except ValueError:

@@ -17,6 +17,7 @@
 import os
 import re
 
+import six
 from genshi import Markup
 
 from trac.core import *
@@ -58,7 +59,7 @@ _type_map = {
 def assemble_pg_dsn(path, user=None, password=None, host=None, port=None):
     """Quote the parameters and assemble the DSN."""
     def quote(value):
-        if not isinstance(value, basestring):
+        if not isinstance(value, six.string_types):
             value = unicode(value)
         return "'%s'" % value.replace('\\', r'\\').replace("'", r"\'")
 

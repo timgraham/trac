@@ -63,6 +63,7 @@ import re
 from StringIO import StringIO
 from collections import namedtuple
 
+import six
 from genshi import Markup, Stream
 from genshi.core import TEXT, START, END, START_NS, END_NS
 from genshi.builder import Fragment, tag
@@ -718,10 +719,10 @@ class Mimeview(Component):
             if output:
                 content, content_type = output
                 if iterable:
-                    if isinstance(content, basestring):
+                    if isinstance(content, six.string_types):
                         content = (content,)
                 else:
-                    if not isinstance(content, basestring):
+                    if not isinstance(content, six.string_types):
                         content = ''.join(content)
                 return content, content_type, conversion.extension
         raise TracError(
@@ -810,7 +811,7 @@ class Mimeview(Component):
                 if not (force_source or getattr(renderer, 'returns_source',
                                                 False)):
                     # Direct rendering of content
-                    if isinstance(result, basestring):
+                    if isinstance(result, six.string_types):
                         if not isinstance(result, unicode):
                             result = to_unicode(result)
                         return Markup(to_unicode(result))
