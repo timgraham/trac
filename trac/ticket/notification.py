@@ -21,6 +21,7 @@ from contextlib import contextmanager
 from datetime import datetime
 
 from genshi.template.text import NewTextTemplate
+from six.moves import range
 
 from trac.attachment import IAttachmentChangeListener
 from trac.core import *
@@ -768,7 +769,7 @@ class TicketNotifyEmail(NotifyEmail):
 
         cell_l = []
         cell_r = []
-        for i in xrange(len(vals_lr[0])):
+        for i in range(len(vals_lr[0])):
             vals_l = vals_lr[0][i]
             vals_r = vals_lr[1][i]
             vals_diff = len(vals_l) - len(vals_r)

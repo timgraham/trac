@@ -14,6 +14,8 @@
 import unittest
 from datetime import datetime, timedelta
 
+from six.moves import range
+
 from trac.perm import DefaultPermissionPolicy, DefaultPermissionStore,\
                       PermissionCache
 from trac.test import Mock, EnvironmentStub
@@ -272,7 +274,7 @@ class BatchModifyTestCase(unittest.TestCase):
         self.assertEqual(True, all(ev[0] != 'batchmodify' for ev in events))
 
         ids = []
-        for i in xrange(20):
+        for i in range(20):
             ticket = Ticket(self.env)
             ticket['summary'] = 'Ticket %d' % i
             ids.append(ticket.insert())

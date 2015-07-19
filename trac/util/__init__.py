@@ -36,7 +36,8 @@ import time
 from urllib import quote, unquote, urlencode
 
 import six
-from six.moves import cStringIO as StringIO
+from six.moves import cStringIO as StringIO, range
+
 
 from trac.util.compat import any, md5, sha1, sorted
 from trac.util.datefmt import to_datetime, to_timestamp, utc
@@ -1045,7 +1046,7 @@ class Ranges(object):
         This is another way I came up with to do it.  Is it faster?
 
         from itertools import chain
-        return chain(*[xrange(a, b+1) for a, b in self.pairs])
+        return chain(*[range(a, b+1) for a, b in self.pairs])
         """
         for a, b in self.pairs:
             for i in range(a, b+1):

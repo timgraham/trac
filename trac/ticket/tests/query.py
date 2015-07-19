@@ -16,6 +16,8 @@ import difflib
 import re
 import unittest
 
+from six.moves import range
+
 from trac.mimeview.api import Mimeview
 from trac.test import Mock, EnvironmentStub, MockPerm, locale_en
 from trac.ticket.api import TicketSystem
@@ -91,7 +93,7 @@ class QueryTestCase(unittest.TestCase):
         when = datetime(2008, 7, 1, 12, 34, 56, 987654, utc)
         with self.env.db_transaction:
             ids = []
-            for idx in xrange(self.n_tickets):
+            for idx in range(self.n_tickets):
                 t = Ticket(self.env)
                 t['summary'] = 'Summary %d' % idx
                 t['owner'] = owner[idx % len(owner)]
@@ -460,7 +462,7 @@ ORDER BY COALESCE(t.id,0)=0,t.id""")
                                                sql))
 
     def test_query_using_joins(self):
-        fields = ['col_%02d' % i for i in xrange(100)]
+        fields = ['col_%02d' % i for i in range(100)]
         for f in fields:
             self.env.config.set('ticket-custom', f, 'text')
         with self.env.db_transaction as db:
@@ -475,7 +477,7 @@ ORDER BY COALESCE(t.id,0)=0,t.id""")
         query = Query.from_string(
             self.env, 'col_12=12.col_12&' +
                       'order=resolution&group=severity&col=id&col=summary' +
-                      ''.join('&col=col_%02d' % idx for idx in xrange(29)))
+                      ''.join('&col=col_%02d' % idx for idx in range(29)))
         sql, args = query.get_sql()
         self.assertEqual(['enum'] * 3 + ['ticket_custom'] * 29,
                          self._get_join_tables(sql))
@@ -485,7 +487,7 @@ ORDER BY COALESCE(t.id,0)=0,t.id""")
         query = Query.from_string(
             self.env, 'col_12=12.col_12&' +
                       'order=milestone&group=version&col=id&col=summary' +
-                      ''.join('&col=col_%02d' % idx for idx in xrange(29)))
+                      ''.join('&col=col_%02d' % idx for idx in range(29)))
         sql, args = query.get_sql()
         self.assertEqual(['enum', 'milestone'] + ['ticket_custom'] * 29 +
                          ['version'],
@@ -496,7 +498,7 @@ ORDER BY COALESCE(t.id,0)=0,t.id""")
         query = Query.from_string(
             self.env, 'col_12=12.col_12&' +
                       'order=resolution&group=severity&col=id&col=summary' +
-                      ''.join('&col=col_%02d' % idx for idx in xrange(30)))
+                      ''.join('&col=col_%02d' % idx for idx in range(30)))
         sql, args = query.get_sql()
         self.assertEqual(['enum'] * 3, self._get_join_tables(sql))
         tickets = query.execute(self.req)
@@ -506,7 +508,7 @@ ORDER BY COALESCE(t.id,0)=0,t.id""")
         query = Query.from_string(
             self.env, 'col_12=12.col_12&' +
                       'order=milestone&group=version&col=id&col=summary' +
-                      ''.join('&col=col_%02d' % idx for idx in xrange(30)))
+                      ''.join('&col=col_%02d' % idx for idx in range(30)))
         sql, args = query.get_sql()
         self.assertEqual(['enum', 'milestone', 'version'],
                          self._get_join_tables(sql))
@@ -514,7 +516,7 @@ ORDER BY COALESCE(t.id,0)=0,t.id""")
         self.assertEqual(1, len(tickets))
 
     def test_too_many_custom_fields(self):
-        fields = ['col_%02d' % i for i in xrange(100)]
+        fields = ['col_%02d' % i for i in range(100)]
         for f in fields:
             self.env.config.set('ticket-custom', f, 'text')
 

@@ -27,7 +27,8 @@ import unicodedata
 
 from genshi.builder import tag
 from six import unichr
-from six.moves import cStringIO as StringIO
+from six.moves import cStringIO as StringIO, range
+
 
 from trac.admin import AdminCommandError, IAdminCommandProvider, PrefixList, \
                        console_datetime_format, get_dir_list
@@ -1100,7 +1101,7 @@ class AttachmentAdmin(Component):
 _control_codes_re = re.compile(
     '[' +
     ''.join(filter(lambda c: unicodedata.category(c) == 'Cc',
-                   map(unichr, xrange(0x10000)))) +
+                   map(unichr, range(0x10000)))) +
     ']')
 
 def _normalized_filename(filepath):

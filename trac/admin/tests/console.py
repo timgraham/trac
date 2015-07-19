@@ -23,6 +23,7 @@ import unittest
 
 import six
 from six import StringIO
+from six.moves import range
 
 # IAdminCommandProvider implementations
 import trac.admin.api
@@ -761,7 +762,7 @@ class TracadminTestCase(unittest.TestCase):
         Tests adding more than 10 priority values.  This makes sure that
         ordering is preserved when adding more than 10 values.
         """
-        for i in xrange(11):
+        for i in range(11):
             self._execute('priority add p%s' % i)
         rv, output = self._execute('priority list')
         self.assertEqual(0, rv, output)

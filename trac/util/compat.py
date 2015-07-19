@@ -21,6 +21,8 @@ import math
 import os
 import time
 
+from six.moves import range
+
 from trac.util.text import cleandoc
 
 # Windows doesn't have a crypt module by default.
@@ -50,7 +52,7 @@ class py_groupby(object):
             key = lambda x: x
         self.keyfunc = key
         self.it = iter(iterable)
-        self.tgtkey = self.currkey = self.currvalue = xrange(0)
+        self.tgtkey = self.currkey = self.currvalue = range(0)
     def __iter__(self):
         return self
     def next(self):

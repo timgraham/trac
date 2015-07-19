@@ -27,6 +27,7 @@ from genshi.core import Stream, Markup, escape
 from genshi.input import HTMLParser, ParseError
 from genshi.util import plaintext
 from six import StringIO
+from six.moves import range
 
 from trac.core import *
 from trac.mimeview import *
@@ -488,13 +489,13 @@ class Formatter(object):
         If `close_tag` is not specified, it's an indirect tag (0.12)
         """
         tmp = ''
-        for i in xrange(len(self._open_tags) - 1, -1, -1):
+        for i in range(len(self._open_tags) - 1, -1, -1):
             tag = self._open_tags[i]
             tmp += self._get_close_tag(tag)
             if (open_tag == tag,
                     (open_tag, close_tag) == tag)[bool(close_tag)]:
                 del self._open_tags[i]
-                for j in xrange(i, len(self._open_tags)):
+                for j in range(i, len(self._open_tags)):
                     tmp += self._get_open_tag(self._open_tags[j])
                 break
         return tmp

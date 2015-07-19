@@ -14,6 +14,8 @@
 import unittest
 from datetime import datetime
 
+from six.moves import range
+
 from trac.test import EnvironmentStub, Mock
 from trac.tests.contentgen import random_sentence
 from trac.ticket.model import Ticket
@@ -37,7 +39,7 @@ class CommitTicketUpdaterTestCase(unittest.TestCase):
 
     def _make_tickets(self, num):
         self.tickets = []
-        for i in xrange(0, num):
+        for i in range(0, num):
             ticket = Ticket(self.env)
             ticket['reporter'] = 'someone'
             ticket['summary'] = random_sentence()

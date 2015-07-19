@@ -18,6 +18,7 @@ from genshi import Stream, Namespace
 from genshi.core import Attrs, TEXT, START, END
 from genshi.input import HTMLParser
 from six import StringIO
+from six.moves import range
 
 import trac.tests.compat
 from trac.core import Component, implements
@@ -232,12 +233,12 @@ class TestMimeviewConverter(Component):
     def convert_content(self, req, mimetype, content, key):
         if content == 'iterable-bytes':
             def fn_bytes():
-                for idx in xrange(256):
+                for idx in range(256):
                     yield 'b' * 256
             return fn_bytes(), 'text/plain'
         if content == 'iterable-unicode':
             def fn_unicode():
-                for idx in xrange(0x10000):
+                for idx in range(0x10000):
                     yield u'ü'
             return fn_unicode(), 'text/plain'
         if content == 'bytes':
