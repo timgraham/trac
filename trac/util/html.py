@@ -11,7 +11,6 @@
 # individuals. For the exact contribution history, see the revision
 # history and logs, available at http://trac.edgewall.org/log/.
 
-from HTMLParser import HTMLParser
 import re
 
 from genshi import Markup, HTML, escape, unescape
@@ -25,6 +24,7 @@ except ImportError:
     LazyProxy = None
 
 from six import unichr
+from six.moves.html_parser import HTMLParser
 
 from trac.core import TracError
 from trac.util.text import to_unicode
