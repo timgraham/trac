@@ -318,7 +318,8 @@ class Environment(Component, ComponentManager):
         info = self.systeminfo[:]
         for provider in self.system_info_providers:
             info.extend(provider.get_system_info() or [])
-        info.sort(key=lambda (name, version): (name != 'Trac', name.lower()))
+        info.sort(key=lambda name_version: (name_version[0] != 'Trac',
+                                            name_version[0].lower()))
         return info
 
     # ISystemInfoProvider methods

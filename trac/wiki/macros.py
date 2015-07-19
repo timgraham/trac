@@ -199,8 +199,8 @@ class TitleIndexMacro(WikiMacroBase):
             """
             groups = []
 
-            for key, grouper in groupby(entries, lambda (elts, name):
-                                                    elts[0] if elts else ''):
+            for key, grouper in groupby(entries, lambda elts_name:
+                                    elts_name[0][0] if elts_name[0] else ''):
                 # remove key from path_elements in grouped entries for further
                 # grouping
                 grouped_entries = [(path_elements[1:], page_name)
@@ -243,8 +243,8 @@ class TitleIndexMacro(WikiMacroBase):
             """
             groups = []
 
-            for key, grouper in groupby(entries, lambda (elts, name):
-                                                    elts[0] if elts else ''):
+            for key, grouper in groupby(entries, lambda elts_name:
+                                    elts_name[0][0] if elts_name[0] else ''):
                 grouped_entries = [e for e in grouper]
                 sub_entries = [e for e in grouped_entries if len(e[0]) > 1]
                 key_entries = [e for e in grouped_entries if len(e[0]) == 1]

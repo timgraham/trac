@@ -494,7 +494,7 @@ def parse_date(text, tzinfo=None, locale=None, hint='date'):
             'date': get_date_format_hint,
             'relative': get_datetime_format_hint,
             'iso8601': lambda l: get_datetime_format_hint('iso8601'),
-        }.get(hint, lambda(l): hint)(locale)
+        }.get(hint, lambda l: hint)(locale)
         if hint != 'iso8601':
             msg = _('"%(date)s" is an invalid date, or the date format '
                     'is not known. Try "%(hint)s" or "%(isohint)s" instead.',

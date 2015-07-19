@@ -573,7 +573,8 @@ class Storage(object):
         branches = sorted(((self._fs_to_unicode(name), rev, head)
                            for name, rev, head
                            in self.rev_cache.iter_branches()),
-                          key=lambda (name, rev, head): (not head, name))
+                          key=lambda name_rev_head: (not name_rev_head[2],
+                                                         name_rev_head[0]))
         return [(name, rev) for name, rev, head in branches]
 
     def get_commits(self):
