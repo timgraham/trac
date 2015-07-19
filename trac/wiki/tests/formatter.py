@@ -27,6 +27,8 @@ except ImportError:
 
 from datetime import datetime
 
+from six import StringIO
+
 from trac.core import Component, TracError, implements
 from trac.test import Mock, MockPerm, EnvironmentStub, locale_en
 from trac.util.datefmt import utc
@@ -247,7 +249,6 @@ class EscapeNewLinesTestCase(WikiTestCase):
 
 class OutlineTestCase(WikiTestCase):
     def formatter(self):
-        from StringIO import StringIO
         class Outliner(object):
             flavor = 'outliner'
             def __init__(self, env, context, input):

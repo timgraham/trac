@@ -20,9 +20,9 @@ import os
 import re
 import sys
 import unittest
-from StringIO import StringIO
 
 import six
+from six import StringIO
 
 # IAdminCommandProvider implementations
 import trac.admin.api

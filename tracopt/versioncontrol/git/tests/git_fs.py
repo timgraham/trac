@@ -15,11 +15,11 @@ import os
 import sys
 import tempfile
 import unittest
-from cStringIO import StringIO
 from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
 
 import six
+from six.moves import cStringIO as StringIO
 
 import trac.tests.compat
 from trac.core import TracError

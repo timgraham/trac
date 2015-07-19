@@ -22,10 +22,8 @@ import urllib
 import urlparse
 from os.path import abspath, dirname, join
 from pkg_resources import parse_version as pv
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from StringIO import StringIO
+
+from six.moves import cStringIO as StringIO
 
 from trac.util.text import to_unicode
 

@@ -21,13 +21,12 @@
 import re
 import os
 
-from StringIO import StringIO
-
 import six
 from genshi.builder import tag, Element
 from genshi.core import Stream, Markup, escape
 from genshi.input import HTMLParser, ParseError
 from genshi.util import plaintext
+from six import StringIO
 
 from trac.core import *
 from trac.mimeview import *

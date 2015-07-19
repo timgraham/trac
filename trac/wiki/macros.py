@@ -19,10 +19,10 @@ from itertools import groupby
 import inspect
 import os
 import re
-from StringIO import StringIO
 
 from genshi.builder import tag
 from genshi.core import Markup
+from six import StringIO
 
 from trac.core import *
 from trac.resource import (

@@ -11,12 +11,13 @@
 # individuals. For the exact contribution history, see the revision
 # history and logs, available at http://trac.edgewall.org/log/.
 
-from StringIO import StringIO
 from datetime import datetime
 import os
 import shutil
 import tempfile
 import unittest
+
+from six import StringIO
 
 from trac.config import Option, ListOption, IntOption, BoolOption
 from trac.test import locale_en

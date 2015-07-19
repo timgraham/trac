@@ -19,7 +19,7 @@ import os.path
 import tempfile
 import unittest
 
-from StringIO import StringIO
+from six import StringIO
 
 try:
     from svn import core, repos

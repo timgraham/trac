@@ -15,11 +15,11 @@
 #
 # Author: Christopher Lenz <cmlenz@gmx.de>
 
-from StringIO import StringIO
 from datetime import datetime, timedelta
 import re
 
 from genshi.builder import tag
+from six import StringIO
 
 from trac import __version__
 from trac.attachment import Attachment, AttachmentModule

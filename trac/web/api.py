@@ -25,12 +25,12 @@ import mimetypes
 import os
 import re
 import socket
-from StringIO import StringIO
 import sys
 import urlparse
 
 import six
 from genshi.builder import Fragment
+from six import StringIO
 
 from trac.core import Interface, TracBaseError
 from trac.util import get_last_traceback, lazy, unquote

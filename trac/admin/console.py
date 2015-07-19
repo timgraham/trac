@@ -18,9 +18,10 @@ import cmd
 import os.path
 import pkg_resources
 from shlex import shlex
-import StringIO
 import sys
 import traceback
+
+from six import StringIO
 
 from trac import __version__ as VERSION
 from trac.admin.api import AdminCommandError, AdminCommandManager, \
@@ -560,7 +561,7 @@ class TracAdminHelpMacro(WikiMacroBase):
                                   command=content))
         else:
             doc = TracAdmin.all_docs(self.env)
-        buf = StringIO.StringIO()
+        buf = StringIO()
         TracAdmin.print_doc(doc, buf, long=True)
         return html.PRE(buf.getvalue().decode('utf-8'), class_='wiki')
 

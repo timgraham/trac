@@ -43,11 +43,12 @@ import sys
 import os
 import signal
 import struct
-import cStringIO as StringIO
 import select
 import socket
 import errno
 import traceback
+
+from six.moves import cStringIO as StringIO
 
 try:
     import thread
@@ -607,7 +608,7 @@ class CGIRequest(Request):
         self.stdin = sys.stdin
         self.stdout = StdoutWrapper(sys.stdout) # Oh, the humanity!
         self.stderr = sys.stderr
-        self.data = StringIO.StringIO()
+        self.data = StringIO()
 
     def _end(self, appStatus=0, protocolStatus=FCGI_REQUEST_COMPLETE):
         sys.exit(appStatus)

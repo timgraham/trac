@@ -18,10 +18,10 @@
 
 import csv
 import re
-from StringIO import StringIO
 
 import six
 from genshi.builder import tag
+from six import StringIO
 
 from trac.config import IntOption
 from trac.core import *
@@ -868,7 +868,7 @@ class ReportModule(Component):
         }
 
         def iterate():
-            from cStringIO import StringIO
+            from six.moves import cStringIO as StringIO
             out = StringIO()
             writer = csv.writer(out, delimiter=sep, quoting=csv.QUOTE_MINIMAL)
 

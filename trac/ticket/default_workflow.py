@@ -17,12 +17,12 @@
 # Author: Eli Carter
 
 from ConfigParser import ParsingError, RawConfigParser
-from StringIO import StringIO
 from collections import defaultdict
 from functools import partial
 from pkg_resources import resource_filename
 
 from genshi.builder import tag
+from six import StringIO
 
 from trac.config import Configuration, ConfigSection
 from trac.core import *

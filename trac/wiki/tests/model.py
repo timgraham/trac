@@ -13,9 +13,10 @@
 
 from datetime import datetime
 import shutil
-from StringIO import StringIO
 import tempfile
 import unittest
+
+from six import StringIO
 
 import trac.tests.compat
 from trac.attachment import Attachment

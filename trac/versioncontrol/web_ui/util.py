@@ -16,11 +16,11 @@
 # Author: Jonas Borgström <jonas@edgewall.com>
 #         Christian Boos <cboos@edgewall.org>
 
-from StringIO import StringIO
 from itertools import izip
 from zipfile import ZipFile, ZIP_DEFLATED
 
 from genshi.builder import tag
+from six import StringIO
 
 from trac.resource import ResourceNotFound
 from trac.util import content_disposition, create_zipinfo

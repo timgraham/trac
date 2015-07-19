@@ -12,10 +12,10 @@
 # history and logs, available at http://trac.edgewall.org/log/.
 
 import doctest
+import unittest
 from datetime import datetime, timedelta
 
-import unittest
-from StringIO import StringIO
+from six import StringIO
 
 import trac.tests.compat
 from trac.db.mysql_backend import MySQLConnection

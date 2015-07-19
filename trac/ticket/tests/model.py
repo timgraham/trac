@@ -12,10 +12,11 @@
 # history and logs, available at http://trac.edgewall.org/log/.
 
 from datetime import datetime, timedelta
-from StringIO import StringIO
 import tempfile
 import shutil
 import unittest
+
+from six import StringIO
 
 import trac.tests.compat
 from trac import core

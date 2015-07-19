@@ -17,7 +17,6 @@
 # Author: Jonas Borgström <jonas@edgewall.com>
 #         Matthew Good <trac@matt-good.net>
 
-from cStringIO import StringIO
 import csv
 import errno
 import functools
@@ -37,6 +36,7 @@ import time
 from urllib import quote, unquote, urlencode
 
 import six
+from six.moves import cStringIO as StringIO
 
 from trac.util.compat import any, md5, sha1, sorted
 from trac.util.datefmt import to_datetime, to_timestamp, utc

@@ -12,7 +12,8 @@
 # history and logs, available at http://trac.edgewall.org/log/.
 
 import unittest
-from cStringIO import StringIO
+
+from six.moves import cStringIO as StringIO
 
 import trac.tests.compat
 from trac.mimeview.patch import PatchRenderer

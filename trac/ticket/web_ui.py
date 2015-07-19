@@ -19,11 +19,11 @@ from datetime import datetime
 from functools import partial
 import pkg_resources
 import re
-from StringIO import StringIO
 
 import six
 from genshi.core import Markup
 from genshi.builder import tag
+from six import StringIO
 
 from trac.attachment import AttachmentModule
 from trac.config import BoolOption, Option, IntOption

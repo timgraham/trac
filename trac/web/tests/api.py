@@ -16,10 +16,11 @@ import shutil
 import sys
 import tempfile
 import unittest
-from StringIO import StringIO
+
+from genshi.builder import tag
+from six import StringIO
 
 import trac.tests.compat
-from genshi.builder import tag
 from trac import perm
 from trac.core import TracError
 from trac.test import EnvironmentStub, Mock, MockPerm, locale_en

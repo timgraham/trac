@@ -13,7 +13,8 @@
 
 import unittest
 from datetime import datetime
-from cStringIO import StringIO
+
+from six.moves import cStringIO as StringIO
 
 import trac.tests.compat
 from trac.core import Component, TracError, implements

@@ -14,7 +14,8 @@
 import os
 import socket
 import unittest
-from StringIO import StringIO
+
+from six import StringIO
 
 import trac.tests.compat
 from trac.util.text import empty, expandtabs, fix_eol, javascript_quote, \

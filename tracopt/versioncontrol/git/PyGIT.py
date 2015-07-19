@@ -16,13 +16,14 @@ import os
 import codecs
 from collections import deque
 from contextlib import contextmanager
-import cStringIO
 from functools import partial
 import re
 from subprocess import Popen, PIPE
 from threading import Lock
 import time
 import weakref
+
+from six.moves import cStringIO as StringIO
 
 from trac.core import TracBaseError
 from trac.util import terminate
@@ -828,7 +829,7 @@ class Storage(object):
             return result[0], dict(result[1])
 
     def get_file(self, sha):
-        return cStringIO.StringIO(self.cat_file('blob', str(sha)))
+        return StringIO(self.cat_file('blob', str(sha)))
 
     def get_obj_size(self, sha):
         sha = str(sha)

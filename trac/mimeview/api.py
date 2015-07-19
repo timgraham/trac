@@ -60,10 +60,11 @@ that can be `read()`.
 """
 
 import re
-from StringIO import StringIO
 from collections import namedtuple
 
 import six
+from six import StringIO
+
 from genshi import Markup, Stream
 from genshi.core import TEXT, START, END, START_NS, END_NS
 from genshi.builder import Fragment, tag

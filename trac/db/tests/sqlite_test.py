@@ -14,7 +14,8 @@
 import os
 import tempfile
 import unittest
-from cStringIO import StringIO
+
+from six.moves import cStringIO as StringIO
 
 from trac.config import ConfigurationError
 from trac.env import Environment

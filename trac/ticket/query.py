@@ -15,7 +15,6 @@
 #
 # Author: Christopher Lenz <cmlenz@gmx.de>
 
-from cStringIO import StringIO
 from datetime import datetime, timedelta
 from itertools import groupby
 from math import ceil
@@ -24,6 +23,7 @@ import re
 
 import six
 from genshi.builder import tag
+from six.moves import cStringIO as StringIO
 
 from trac.config import Option, IntOption
 from trac.core import *

@@ -16,7 +16,6 @@
 # Author: Jonas Borgström <jonas@edgewall.com>
 #         Christopher Lenz <cmlenz@gmx.de>
 
-from cStringIO import StringIO
 from datetime import datetime
 import errno
 import os.path
@@ -28,6 +27,7 @@ import unicodedata
 
 from genshi.builder import tag
 from six import unichr
+from six.moves import cStringIO as StringIO
 
 from trac.admin import AdminCommandError, IAdminCommandProvider, PrefixList, \
                        console_datetime_format, get_dir_list

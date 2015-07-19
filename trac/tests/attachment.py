@@ -16,7 +16,8 @@ import shutil
 import tempfile
 import unittest
 from datetime import datetime
-from StringIO import StringIO
+
+from six import StringIO
 
 from trac.attachment import Attachment, AttachmentModule
 from trac.core import Component, implements, TracError

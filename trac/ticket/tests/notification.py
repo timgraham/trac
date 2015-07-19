@@ -23,7 +23,8 @@ import tempfile
 import re
 import unittest
 from datetime import datetime, timedelta
-from StringIO import StringIO
+
+from six import StringIO
 
 import trac.tests.compat
 from trac.attachment import Attachment

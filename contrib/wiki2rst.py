@@ -5,10 +5,10 @@ import codecs
 import os.path
 import re
 import sys
-
-from cStringIO import StringIO
 from pkg_resources import resource_listdir, resource_string
+
 import html2rest
+from six.moves import cStringIO as StringIO
 
 from trac.loader import load_components
 from trac.test import EnvironmentStub, Mock, MockPerm

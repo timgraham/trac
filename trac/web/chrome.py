@@ -28,10 +28,6 @@ import os.path
 import pkg_resources
 import pprint
 import re
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from StringIO import StringIO
 
 from genshi import Markup
 from genshi.builder import tag, Element
@@ -39,6 +35,7 @@ from genshi.core import Attrs, START
 from genshi.filters import Translator
 from genshi.output import DocType
 from genshi.template import TemplateLoader, MarkupTemplate, NewTextTemplate
+from six.moves import cStringIO as StringIO
 
 from trac import __version__ as VERSION
 from trac.config import *

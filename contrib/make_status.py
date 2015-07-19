@@ -8,8 +8,9 @@
 # you should have received as part of this distribution. The terms
 # are also available at http://trac.edgewall.org/wiki/TracLicense.
 
-import StringIO
 import warnings
+
+from six import StringIO
 
 from trac.util.text import print_table, printout
 
@@ -62,7 +63,7 @@ def shift(prefix, block):
 
 def print_status():
     warnings.filterwarnings('ignore', '', DeprecationWarning) # Twill 0.9...
-    buf = StringIO.StringIO()
+    buf = StringIO()
     package_versions(PACKAGES, buf)
     printout(shift('  ', buf.getvalue()))
 
