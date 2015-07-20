@@ -253,9 +253,8 @@ class TicketModule(Component):
 
         field_labels = TicketSystem(self.env).get_ticket_field_labels()
 
-        def produce_event((id, ts, author, type, summary, description,
-                           component),
-                          status, fields, comment, cid):
+        def produce_event(data, status, fields, comment, cid):
+            (id, ts, author, type, summary, description, component) = data
             ticket = ticket_realm(id=id)
             if 'TICKET_VIEW' not in req.perm(ticket):
                 return None

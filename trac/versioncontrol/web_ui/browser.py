@@ -545,15 +545,18 @@ class BrowserModule(Component):
 
         # Ordering of repositories
         if order == 'date':
-            def repo_order((reponame, repoinfo, repos, youngest, err, href)):
+            def repo_order(data):
+                (reponame, repoinfo, repos, youngest, err, href) = data
                 return (youngest.date if youngest else to_datetime(0),
                         embedded_numbers(reponame.lower()))
         elif order == 'author':
-            def repo_order((reponame, repoinfo, repos, youngest, err, href)):
+            def repo_order(data):
+                (reponame, repoinfo, repos, youngest, err, href) = data
                 return (youngest.author.lower() if youngest else '',
                         embedded_numbers(reponame.lower()))
         else:
-            def repo_order((reponame, repoinfo, repos, youngest, err, href)):
+            def repo_order(data):
+                (reponame, repoinfo, repos, youngest, err, href) = data
                 return embedded_numbers(reponame.lower())
 
         repositories = sorted(repositories, key=repo_order, reverse=desc)
