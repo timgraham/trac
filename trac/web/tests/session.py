@@ -11,12 +11,12 @@
 # individuals. For the exact contribution history, see the revision
 # history and logs, available at http://trac.edgewall.org/log/.
 
-from Cookie import SimpleCookie as Cookie
 import time
 from datetime import datetime
 import unittest
 
 from six.moves import range
+from six.moves.http_cookies import SimpleCookie as Cookie
 
 import trac.tests.compat
 from trac.admin.api import console_date_format

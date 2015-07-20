@@ -33,11 +33,10 @@ import string
 import struct
 import tempfile
 import time
-from urllib import quote, unquote, urlencode
 
 import six
 from six.moves import cStringIO as StringIO, range
-
+from six.moves.urllib.parse import quote, unquote
 
 from trac.util.compat import any, md5, sha1, sorted
 from trac.util.datefmt import to_datetime, to_timestamp, utc

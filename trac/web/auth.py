@@ -23,10 +23,15 @@ import os
 import re
 import sys
 import time
-import urllib2
-import urlparse
 
+import six
 from genshi.builder import tag
+from six.moves.urllib.parse import urlparse
+
+if six.PY2:
+    from urllib2 import parse_http_list
+else:
+    from urllib.request import parse_http_list
 
 from trac.config import BoolOption, IntOption, Option
 from trac.core import *
@@ -252,9 +257,8 @@ class LoginModule(Component):
         if referer:
             if not referer.startswith(('http://', 'https://')):
                 # Make URL absolute
-                scheme, host = urlparse.urlparse(req.base_url)[:2]
-                referer = urlparse.urlunparse((scheme, host, referer, None,
-                                               None, None))
+                scheme, host = urlparse(req.base_url)[:2]
+                referer = urlunparse((scheme, host, referer, None, None, None))
             pos = req.base_url.find(':')
             base_scheme = req.base_url[:pos]
             base_noscheme = req.base_url[pos:]

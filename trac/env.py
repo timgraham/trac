@@ -19,7 +19,8 @@
 import os.path
 import setuptools
 import sys
-from urlparse import urlsplit
+
+from six.moves.urllib.parse import urlsplit
 
 import six
 

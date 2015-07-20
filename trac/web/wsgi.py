@@ -18,9 +18,15 @@ from abc import ABCMeta, abstractmethod
 import errno
 import socket
 import sys
-from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
-from SocketServer import ForkingMixIn, ThreadingMixIn
 import urllib
+
+import six
+from six.moves.socketserver import ForkingMixIn, ThreadingMixIn
+
+if six.PY2:
+    from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+else:
+    from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
 class _ErrorsWrapper(object):
