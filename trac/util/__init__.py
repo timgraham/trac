@@ -21,7 +21,7 @@ import csv
 import errno
 import functools
 import inspect
-from itertools import izip, tee
+from itertools import tee
 import locale
 import os.path
 from pkg_resources import find_distributions

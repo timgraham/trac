@@ -19,12 +19,12 @@ we also modify the standard `distutils.command.build` and
 for compiling catalogs are issued upon install.
 """
 
-from itertools import izip
 import os
 import re
 from tokenize import generate_tokens, COMMENT, NAME, OP, STRING
 
 from six import StringIO
+from six.moves import zip
 
 from distutils import log
 from distutils.cmd import Command
@@ -390,7 +390,7 @@ try:
         if not _GENSHI_MARKUP_SEARCH(msgids[0]):
             return
 
-        for msgid, msgstr in izip(msgids, msgstrs):
+        for msgid, msgstr in zip(msgids, msgstrs):
             if msgstr:
                 _validate_genshi_markup(msgid, msgstr)
 
