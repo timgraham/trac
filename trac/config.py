@@ -453,7 +453,7 @@ class Section(object):
                     options.add(loption)
                     yield option
         if defaults:
-            for section, option in Option.get_registry(compmgr).iterkeys():
+            for section, option in six.iterkeys(Option.get_registry(compmgr)):
                 if section == self.name and option.lower() not in options:
                     yield option
 
@@ -701,7 +701,7 @@ class Option(object):
             return 'enabled'
         if value is False:
             return 'disabled'
-        if isinstance(value, unicode):
+        if isinstance(value, six.text_type):
             return value
         return to_unicode(value)
 

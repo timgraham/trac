@@ -279,7 +279,7 @@ class RequestDispatcher(Component):
                     self.log.error("Exception caught while post-processing"
                                    " request: %s",
                                    exception_to_unicode(e, traceback=True))
-                raise err[0], err[1], err[2]
+                raise (err[0], err[1], err[2])
         except PermissionError as e:
             raise HTTPForbidden(e)
         except ResourceNotFound as e:

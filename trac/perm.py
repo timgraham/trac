@@ -37,7 +37,7 @@ __all__ = ['IPermissionRequestor', 'IPermissionStore', 'IPermissionPolicy',
            'IPermissionGroupProvider', 'PermissionError', 'PermissionSystem']
 
 
-class PermissionError(StandardError, TracBaseError):
+class PermissionError(TracBaseError):
     """Insufficient permissions to perform the operation.
 
     :since 1.0.5: the `msg` attribute is deprecated and will be removed in

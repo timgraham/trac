@@ -18,7 +18,6 @@
 #         Matthew Good <trac@matt-good.net>
 #         Christian Boos <cboos@edgewall.org>
 
-import __builtin__
 import locale
 import os
 import re
@@ -26,13 +25,14 @@ import sys
 import textwrap
 from unicodedata import east_asian_width
 
+import six
 from six import unichr
 from six.moves import range
 from six.moves.urllib.parse import quote, quote_plus, unquote
 
 CRLF = '\r\n'
 
-class Empty(unicode):
+class Empty(six.text_type):
     """A special tag object evaluating to the empty string"""
     __slots__ = []
 
@@ -55,11 +55,11 @@ def to_unicode(text, charset=None):
     For anything else, a simple `unicode()` conversion is attempted,
     with special care taken with `Exception` objects.
     """
-    if isinstance(text, str):
+    if isinstance(text, six.binary_type):
         try:
-            return unicode(text, charset or 'utf-8')
+            return six.text_type(text, charset or 'utf-8')
         except UnicodeDecodeError:
-            return unicode(text, 'latin1')
+            return six.text_type(text, 'latin1')
     elif isinstance(text, Exception):
         if os.name == 'nt' and isinstance(text, (OSError, IOError)):
             # the exception might have a localized error string encoded with
@@ -71,11 +71,11 @@ def to_unicode(text, charset=None):
         # two possibilities for storing unicode strings in exception data:
         try:
             # custom __str__ method on the exception (e.g. PermissionError)
-            return unicode(text)
+            return six.text_type(text)
         except UnicodeError:
             # unicode arguments given to the exception (e.g. parse_date)
             return ' '.join([to_unicode(arg) for arg in text.args])
-    return unicode(text)
+    return six.text_type(text)
 
 
 def exception_to_unicode(e, traceback=False):
@@ -235,16 +235,16 @@ def to_utf8(text, charset='latin1'):
     already UTF-8, ISO Latin-1, or as specified by the optional
     *charset* parameter.
     """
-    if isinstance(text, str):
+    if isinstance(text, six.binary_type):
         try:
-            u = unicode(text, 'utf-8')
+            u = six.text_type(text, 'utf-8')
         except UnicodeError:
             try:
                 # Use the user supplied charset if possible
-                u = unicode(text, charset)
+                u = six.text_type(text, charset)
             except UnicodeError:
                 # This should always work
-                u = unicode(text, 'latin1')
+                u = six.text_type(text, 'latin1')
         else:
             # Do nothing if it's already utf-8
             return text
@@ -253,7 +253,7 @@ def to_utf8(text, charset='latin1'):
     return u.encode('utf-8')
 
 
-class unicode_passwd(unicode):
+class unicode_passwd(six.text_type):
     """Conceal the actual content of the string when `repr` is called."""
     def __repr__(self):
         return '*******'
@@ -274,8 +274,14 @@ def console_print(out, *args, **kwargs):
                    (defaults to `True`)
     """
     cons_charset = stream_encoding(out)
-    out.write(' '.join([to_unicode(a).encode(cons_charset, 'replace')
-                        for a in args]))
+
+    def format_func(text):
+        if six.PY2:
+            return to_unicode(text).encode(cons_charset, 'replace')
+        else:
+            return to_unicode(text)
+
+    out.write(' '.join([format_func(a) for a in args]))
     if kwargs.get('newline', True):
         out.write('\n')
 
@@ -397,7 +403,8 @@ def print_table(data, headers=None, sep='  ', out=None, ambiwidth=None):
 
             line = u'%-*s%s' % (col_width[cidx] - tw(cell) + len(cell),
                                 cell, sp)
-            line = line.encode(charset, 'replace')
+            if six.PY2:
+                line = line.encode(charset, 'replace')
             out.write(line)
 
         out.write('\n')
