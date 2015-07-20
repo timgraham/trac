@@ -15,11 +15,11 @@
 # Author: Alec Thomas <alec@swapoff.org>
 
 import os
-from ConfigParser import ParsingError
 from fnmatch import fnmatchcase
 from itertools import groupby
 
 import six
+from six.moves.configparser import ParsingError
 
 from trac.config import ConfigurationError, PathOption, UnicodeConfigParser
 from trac.core import *

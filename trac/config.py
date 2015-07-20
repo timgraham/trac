@@ -15,10 +15,10 @@
 import copy
 import os.path
 import re
-from ConfigParser import ConfigParser
 
 import six
 from genshi.builder import tag
+from six.moves.configparser import ConfigParser
 
 from trac.admin import AdminCommandError, IAdminCommandProvider
 from trac.core import Component, ExtensionPoint, TracError, implements

@@ -16,13 +16,13 @@
 #
 # Author: Eli Carter
 
-from ConfigParser import ParsingError, RawConfigParser
 from collections import defaultdict
 from functools import partial
 from pkg_resources import resource_filename
 
 from genshi.builder import tag
 from six import StringIO
+from six.moves.configparser import ParsingError, RawConfigParser
 
 from trac.config import Configuration, ConfigSection
 from trac.core import *
